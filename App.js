@@ -14,15 +14,13 @@ export default function App() {
                         onError={err => console.log(err)} />
   }
 
-  return <AppNavigation />
+  // return <AppNavigation />
 
-//   return (
-// //   <View style={styles.container}>
-//     <View>
-//       <AppNavigation />
-//       <StatusBar style="auto" />
-//     </View>
-//   );
+  return( <AppNavigation>
+            <View>
+              <StatusBar style="auto" />
+            </View>
+          </AppNavigation> )
 }
 
 // const styles = StyleSheet.create({

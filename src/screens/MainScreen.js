@@ -1,17 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet } from 'react-native';
 
-export const MainScreen = ({}) => {
+export const MainScreen = ({ navigation }) => {
+  const goToPostButton = () => {
+    navigation.navigate('Post')
+    console.log(navigation)
+  }
   return (
     <View style={styles.center}>
 
       <Text style={styles.centeredSubTitle}>The Screen</Text>
       <Text style={styles.centeredTitle}>Main Screen</Text>
+      <Button title='GoToPOST'
+              onPress={goToPostButton} />
 
       <StatusBar style="auto" />
     </View>
   );
+}
+
+MainScreen.navigationOptions = {
+  headerTitle: 'MainScrTitle'
 }
 
 const styles = StyleSheet.create({
@@ -22,10 +32,10 @@ const styles = StyleSheet.create({
   },
   centeredTitle:{
     fontFamily: 'open-sans-normal',
-    fontSize: '32',
+    fontSize: 32,
   },
   centeredSubTitle:{
     fontFamily: 'open-sans-light',
-    fontSize: '16',
+    fontSize: 16,
   }
 });

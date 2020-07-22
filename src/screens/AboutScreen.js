@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
   },
   centeredTitle:{
     fontFamily: 'open-sans-normal',
-    fontSize: '32',
+    fontSize: 32,
   },
   centeredSubTitle:{
     fontFamily: 'open-sans-light',
-    fontSize: '16',
+    fontSize: 16,
   }
 });
