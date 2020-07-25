@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, FlatList, Text, View, StyleSheet } from 'react-native';
 
-import {Post} from '../components/Post'
+import { Post } from '../components/Post'
 import { DATA } from '../data';
 
 export const MainScreen = ({ navigation }) => {
@@ -19,6 +19,8 @@ export const MainScreen = ({ navigation }) => {
               onPress={goToPostButton} /> */}
 
       <FlatList data={DATA}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
                 keyExtractor={post => post.id.toString()}
                 renderItem={({ item }) => <Post /> } />
 
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10
+    padding: '1%'
   },
   centeredTitle:{
     fontFamily: 'open-sans-normal',
