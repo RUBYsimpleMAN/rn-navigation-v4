@@ -15,7 +15,7 @@ export const PostScreen = ({}) => {
 }
 
 PostScreen.navigationOptions = {
-  headerTitle: 'PostScrTitle'
+  headerTitle: 'Post Screen Title'
 }
 
 const styles = StyleSheet.create({

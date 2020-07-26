@@ -1,0 +1,10 @@
+export const THEME = {
+  BRAND_COLOR:      '#154260',
+  USE_COLOR:        '#037DF3',
+  ACCEPT_COLOR:     '#00BD62',
+  DANGER_COLOR:     '#F30026',
+  TEXT_DARK_COLOR:  '#0B2032',
+  TEXT_SHINE_COLOR: '#DBDEDB',
+  NAVBAR_COLOR:     '#1E3544',
+  DRAFT_COLOR:      '#894751',
+}

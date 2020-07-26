@@ -11,34 +11,41 @@ export const MainScreen = ({ navigation }) => {
     console.log(navigation)
   }
   return (
-    <View style={styles.center}>
-
-      {/* <Text style={styles.centeredSubTitle}>The Screen</Text>
-      <Text style={styles.centeredTitle}>Main Screen</Text>
-      <Button title='GoToPOST'
-              onPress={goToPostButton} /> */}
-
-      <FlatList data={DATA}
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={post => post.id.toString()}
-                renderItem={({ item }) => <Post /> } />
-
-      <StatusBar style="auto" />
+    <View>
+      <View style={styles.center}>
+        <Text style={styles.centeredSubTitle}>The Screen</Text>
+        <Text style={styles.centeredTitle}>Main Screen</Text>
+        <Button title='GoToPOST'
+                onPress={goToPostButton} />
+      </View>
+      <View>
+        <FlatList data={DATA}
+                  style={styles.viewFlatList}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={post => post.id.toString()}
+                  renderItem={({ item }) => <Post post={item} /> } />
+  
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
 
 MainScreen.navigationOptions = {
-  headerTitle: 'MainScrTitle'
+  headerTitle: 'Main Screen Title'
 }
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     padding: '1%'
+  },
+  viewFlatList: {
+    paddingBottom: 300,
+    marginBottom: 220
   },
   centeredTitle:{
     fontFamily: 'open-sans-normal',

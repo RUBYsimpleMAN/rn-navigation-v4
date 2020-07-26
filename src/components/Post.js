@@ -1,75 +1,16 @@
 import React from 'react'
-import {  Button,
-          FlatList,
-          ImageBackground,
-          Text,
-          View,
-          StyleSheet } from 'react-native'
+import { ImageBackground, Text, View, StyleSheet } from 'react-native'
 
-// import { DATA } from '../data';
-// import Kartinka01 from '../../assets/imgs/image01.png'
+import { THEME } from '../theme/theme';
 
-const DATA = [
-  {
-    id: '1',
-    img: '../../assets/imgs/image01.png',
-    title: 'title_1_title',
-    text: 'text:text:1:text:text',
-    date: new Date().toJSON(),
-    booked: true,
-  },{
-    id: '2',
-    img: '../../assets/imgs/image02.png',
-    title: 'title_2_title',
-    text: 'text:text:2:text:text',
-    date: new Date().toISOString(),
-    booked: true,
-  },{
-    id: '3',
-    img: '../../assets/imgs/image03.png',
-    title: 'title_3_title',
-    text: 'text:text:3:text:text',
-    date: new Date().toISOString(),
-    booked: false,
-  },{
-    id: '4',
-    img: '../../assets/imgs/image04.png',
-    title: 'title_4_title',
-    text: 'text:text:4:text:text',
-    date: new Date().toJSON(),
-    booked: true,
-  },{
-    id: '5',
-    img: '../../assets/imgs/image03-1.png',
-    title: 'title_5_title',
-    text: 'text:text:5:text:text',
-    date: new Date().toISOString(),
-    booked: false,
-  },{
-    id: '6',
-    img: '../../assets/imgs/image01.png',
-    title: 'title_6_title',
-    text: 'text:text:6:text:text',
-    date: new Date().toISOString(),
-    booked: true,
-  },{
-    id: '7',
-    img: '../../assets/imgs/image02.png',
-    title: 'title_7_title',
-    text: 'text:text:7:text:text',
-    date: new Date().toJSON(),
-    booked: true,
-  }
-]
-
-export const Post = ({  }) => {
-  const nowDate = new Date().toISOString()
+ 
+export const Post = ({ post }) => {
   return (
   <View style={styles.postStyle}>
-    <ImageBackground  source={DATA.img}
+    <ImageBackground  source={{uri: post.img}}
                       style={styles.imageStyle}>
       <View style={styles.textWrap}>
-        <Text style={styles.centeredSubTitle} > {nowDate} </Text>
+        <Text style={styles.centeredSubTitle} > {post.date} </Text>
       </View>
     </ImageBackground>
   </View>
@@ -99,9 +40,10 @@ const styles = StyleSheet.create({
   centeredSubTitle:{
     fontFamily: 'open-sans-light',
     fontSize: 16,
+    color: THEME.TEXT_SHINE_COLOR
   },
   imageStyle:{
     width: '100%',
-    height: 200
+    height: 300
   }
 });
