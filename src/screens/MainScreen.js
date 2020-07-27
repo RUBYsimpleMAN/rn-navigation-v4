@@ -6,25 +6,20 @@ import { Post } from '../components/Post'
 import { DATA } from '../data';
 
 export const MainScreen = ({ navigation }) => {
-  const goToPostButton = () => {
-    navigation.navigate('Post')
+  const onOpenPostHandler = post => {
+    navigation.navigate('Post', { postId: post.id, date: post.date })
     console.log(navigation)
   }
   return (
     <View>
-      <View style={styles.center}>
-        <Text style={styles.centeredSubTitle}>The Screen</Text>
-        <Text style={styles.centeredTitle}>Main Screen</Text>
-        <Button title='GoToPOST'
-                onPress={goToPostButton} />
-      </View>
       <View>
         <FlatList data={DATA}
                   style={styles.viewFlatList}
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
                   keyExtractor={post => post.id.toString()}
-                  renderItem={({ item }) => <Post post={item} /> } />
+                  renderItem={({ item }) => <Post post={item}
+                                                  onOpenPost={onOpenPostHandler} /> } />
   
         <StatusBar style="auto" />
       </View>
@@ -45,7 +40,7 @@ const styles = StyleSheet.create({
   },
   viewFlatList: {
     paddingBottom: 300,
-    marginBottom: 220
+    // marginBottom: 220
   },
   centeredTitle:{
     fontFamily: 'open-sans-normal',

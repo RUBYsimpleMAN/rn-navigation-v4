@@ -2,20 +2,25 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export const PostScreen = ({}) => {
+export const PostScreen = ({ navigation }) => {
+  const postId = navigation.getParam('postId')
   return (
     <View style={styles.center}>
-
-      <Text style={styles.centeredSubTitle}>The Screen</Text>
-      <Text style={styles.centeredTitle}>Post Screen</Text>
-
+      <Text style={styles.centeredTitle}> { postId } </Text>
       <StatusBar style="auto" />
     </View>
   );
 }
 
-PostScreen.navigationOptions = {
-  headerTitle: 'Post Screen Title'
+PostScreen.navigationOptions = ({ navigation }) => {
+  const postDate = navigation.getParam('date')
+  return {
+    headerTitle: 'Post from ' + new Date(postDate).toLocaleDateString(),
+    headerStyle: {
+      backgroundColor: 'navy'
+    },
+    headerTintColor: 'white'
+  }
 }
 
 const styles = StyleSheet.create({
