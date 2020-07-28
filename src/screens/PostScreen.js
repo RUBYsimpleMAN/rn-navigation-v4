@@ -1,14 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Alert, Button, Image, ScrollView, Text, View, StyleSheet } from 'react-native';
+
+import { DATA } from '../data';
+import { THEME } from '../theme/theme';
 
 export const PostScreen = ({ navigation }) => {
   const postId = navigation.getParam('postId')
+  const postDATA = DATA.find(p => p.id === postId)
+  const rmPostHandler = () => {
+    Alert.alert(
+      "Будем удалять?!.",
+      "Точно-преточно?..",
+      [
+        {
+          // text: "Ask me later",
+          // onPress: () => console.log("Ask me later pressed")
+        },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: true }
+    );
+  }
   return (
-    <View style={styles.center}>
-      <Text style={styles.centeredTitle}> { postId } </Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView>
+      <View style={styles.center}>
+        <Text style={styles.centeredTitle}> { postId } </Text>
+        <Image  style={styles.imageStyle}
+                source={{uri: postDATA.img}} />
+        <Text style={styles.centeredSubTitle}> { postDATA.text } </Text>
+        <Button title='Удалить пост'
+                color={THEME.DANGER_COLOR}
+                onPress={rmPostHandler} />
+        <StatusBar style="auto" />
+      </View>
+    </ScrollView>
   );
 }
 
@@ -36,5 +67,9 @@ const styles = StyleSheet.create({
   centeredSubTitle:{
     fontFamily: 'open-sans-light',
     fontSize: 16,
+  },
+  imageStyle:{
+    width: '100%',
+    height: 300
   }
 });
