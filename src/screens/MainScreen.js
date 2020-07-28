@@ -3,14 +3,13 @@ import React, { useLayoutEffect, useState, useCallback, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import { HederTopLeftMenuIcon } from '../components/HederTopLeftMenuIcon'
+import { HeaderTopLeftMenuIcon } from '../components/HeaderTopLeftMenuIcon'
 import { Post } from '../components/Post'
 import { DATA } from '../data';
 
 export const MainScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
     navigation.navigate('Post', { postId: post.id, date: post.date })
-    console.log(navigation)
   }
   return (
     <View>
@@ -30,30 +29,14 @@ export const MainScreen = ({ navigation }) => {
 }
 
 
-
-
-useLayoutEffect(() => {
-  navigation.setOptions({
-      headerTitle: 'Main Screen Title',
-      headerRight:   () => (
-        <HeaderButtons HeaderButtonComponent={HederTopLeftMenuIcon} >
-          <Item title='TakePhoto'
-                iconName='ios-camera'
-                onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
-        </HeaderButtons>
-      )
-  })
-})
-
-
-// MainScreen.navigationOptions = {
-//   headerTitle: 'Main Screen Title',
-//   headerRight:  <HeaderButtons HeaderButtonComponent={HederTopLeftMenuIcon} >
-//                   <Item title='TakePhoto'
-//                         iconName='ios-camera'
-//                         onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
-//                 </HeaderButtons>
-// }
+MainScreen.navigationOptions = {
+  headerTitle: 'Main Screen Title',
+  headerRight:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
+                  <Item title='TakePhoto'
+                        iconName='ios-camera'
+                        onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                </HeaderButtons>)
+}
 
 const styles = StyleSheet.create({
   center: {
