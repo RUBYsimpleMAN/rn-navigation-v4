@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useLayoutEffect, useState, useCallback, useEffect } from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { FlatList, View, StyleSheet } from 'react-native'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { HeaderTopLeftMenuIcon } from '../components/HeaderTopLeftMenuIcon'
 import { Post } from '../components/Post'
-import { DATA } from '../data';
+import { DATA } from '../data'
 
 export const MainScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
@@ -21,7 +21,6 @@ export const MainScreen = ({ navigation }) => {
                   keyExtractor={post => post.id.toString()}
                   renderItem={({ item }) => <Post post={item}
                                                   onOpenPost={onOpenPostHandler} /> } />
-  
         <StatusBar style="auto" />
       </View>
     </View>
@@ -32,10 +31,10 @@ export const MainScreen = ({ navigation }) => {
 MainScreen.navigationOptions = {
   headerTitle: 'Main Screen Title',
   headerRight:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
-                  <Item title='TakePhoto'
-                        iconName='ios-camera'
-                        onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
-                </HeaderButtons>)
+                        <Item title='TakePhoto'
+                          iconName='ios-camera'
+                          onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                      </HeaderButtons>)
 }
 
 const styles = StyleSheet.create({
