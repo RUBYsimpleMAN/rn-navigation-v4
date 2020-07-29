@@ -9,7 +9,9 @@ import { DATA } from '../data'
 
 export const MainScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
-    navigation.navigate('Post', { postId: post.id, date: post.date })
+    navigation.navigate('Post', { postId: post.id,
+                                  date:   post.date,
+                                  booked: post.booked })
   }
   return (
     <View>
@@ -30,11 +32,16 @@ export const MainScreen = ({ navigation }) => {
 
 MainScreen.navigationOptions = {
   headerTitle: 'Main Screen Title',
+  headerLeft:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
+                        <Item title='menu'
+                              iconName='ios-menu'
+                              onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                      </HeaderButtons>),
   headerRight:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
-                        <Item title='TakePhoto'
-                          iconName='ios-camera'
-                          onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
-                      </HeaderButtons>)
+                        <Item title='camera'
+                              iconName='ios-camera'
+                              onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                      </HeaderButtons>),
 }
 
 const styles = StyleSheet.create({

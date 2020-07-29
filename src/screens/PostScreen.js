@@ -1,13 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Alert, Button, Image, ScrollView, Text, View, StyleSheet } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
+import { HeaderTopLeftMenuIcon } from '../components/HeaderTopLeftMenuIcon'
 import { DATA } from '../data';
 import { THEME } from '../theme/theme';
 
 export const PostScreen = ({ navigation }) => {
   const postId = navigation.getParam('postId')
   const postDATA = DATA.find(p => p.id === postId)
+
+  // useEffect(() => {
+  //   navigation.setParams({ boocked: postDATA.boocked })
+  // }, [])
+
   const rmPostHandler = () => {
     Alert.alert(
       "Будем удалять?!.",
@@ -45,12 +52,19 @@ export const PostScreen = ({ navigation }) => {
 
 PostScreen.navigationOptions = ({ navigation }) => {
   const postDate = navigation.getParam('date')
+  const boocked = navigation.getParam('boocked')
+  const customIconName = boocked ? 'ios-star' : 'ios-star-outline'
   return {
     headerTitle: 'Post from ' + new Date(postDate).toLocaleDateString(),
     headerStyle: {
       backgroundColor: 'navy'
     },
-    headerTintColor: 'white'
+    headerTintColor: 'white',
+    headerRight:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
+                          <Item title='StarIcon'
+                                iconName={customIconName}
+                                onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                        </HeaderButtons>)
   }
 }
 
