@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Alert, Button, Image, ScrollView, Text, View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
@@ -12,7 +12,7 @@ export const PostScreen = ({ navigation }) => {
   const postDATA = DATA.find(p => p.id === postId)
 
   // useEffect(() => {
-  //   navigation.setParams({ boocked: postDATA.boocked })
+  //   navigation.setParams({ booked: postDATA.booked })
   // }, [])
 
   const rmPostHandler = () => {
@@ -52,8 +52,8 @@ export const PostScreen = ({ navigation }) => {
 
 PostScreen.navigationOptions = ({ navigation }) => {
   const postDate = navigation.getParam('date')
-  const boocked = navigation.getParam('boocked')
-  const customIconName = boocked ? 'ios-star' : 'ios-star-outline'
+  const booked = navigation.getParam('booked')
+  const customIconName = booked ? 'ios-star' : 'ios-star-outline'
   return {
     headerTitle: 'Post from ' + new Date(postDate).toLocaleDateString(),
     headerStyle: {

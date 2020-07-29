@@ -8,7 +8,7 @@ import { THEME } from '../theme/theme'
 export const HeaderTopLeftMenuIcon = props => (
   <HeaderButton {...props}
                 iconSize={24}
-                iconComponent={ Ionicons }
+                IconComponent={ Ionicons }
                 color={ Platform.OS === 'android' ?
                         THEME.TEXT_SHINE_COLOR :
                         THEME.DRAFT_COLOR} />
