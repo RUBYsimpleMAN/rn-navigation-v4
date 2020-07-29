@@ -35,12 +35,12 @@ MainScreen.navigationOptions = {
   headerLeft:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='menu'
                               iconName='ios-menu'
-                              onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                              onPress={() => console.log('Pressed Header NavMenu Left Button (menu)')} />
                       </HeaderButtons>),
   headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='camera'
                               iconName='ios-camera'
-                              onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                              onPress={() => console.log('Pressed Header NavMenu Right Button (camera) ')} />
                       </HeaderButtons>),
 }
 

@@ -26,10 +26,10 @@ export const PostScreen = ({ navigation }) => {
         },
         {
           text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
+          onPress: () => console.log("Pressed Post Alert cancel Button"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        { text: "OK", onPress: () => console.log("Pressed Post Alert OK Button") }
       ],
       { cancelable: true }
     );
@@ -63,7 +63,7 @@ PostScreen.navigationOptions = ({ navigation }) => {
     headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                           <Item title='StarIcon'
                                 iconName={customIconName}
-                                onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
+                                onPress={() => console.log('Pressed Header NavMenu Right Button (star)')} />
                         </HeaderButtons>)
   }
 }
