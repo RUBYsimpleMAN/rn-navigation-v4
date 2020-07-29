@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert, Button, Image, ScrollView, Text, View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-import { HeaderTopLeftMenuIcon } from '../components/HeaderTopLeftMenuIcon'
+import { NavIconTemplate } from '../components/NavIconTemplate'
 import { DATA } from '../data';
 import { THEME } from '../theme/theme';
 
@@ -60,7 +60,7 @@ PostScreen.navigationOptions = ({ navigation }) => {
       backgroundColor: 'navy'
     },
     headerTintColor: 'white',
-    headerRight:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
+    headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                           <Item title='StarIcon'
                                 iconName={customIconName}
                                 onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />

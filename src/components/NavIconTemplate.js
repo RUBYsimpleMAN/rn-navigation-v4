@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { THEME } from '../theme/theme'
 
-export const HeaderTopLeftMenuIcon = props => (
+export const NavIconTemplate = props => (
   <HeaderButton {...props}
                 iconSize={24}
                 IconComponent={ Ionicons }

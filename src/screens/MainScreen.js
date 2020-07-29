@@ -3,7 +3,7 @@ import React from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-import { HeaderTopLeftMenuIcon } from '../components/HeaderTopLeftMenuIcon'
+import { NavIconTemplate } from '../components/NavIconTemplate'
 import { Post } from '../components/Post'
 import { DATA } from '../data'
 
@@ -32,12 +32,12 @@ export const MainScreen = ({ navigation }) => {
 
 MainScreen.navigationOptions = {
   headerTitle: 'Main Screen Title',
-  headerLeft:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
+  headerLeft:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='menu'
                               iconName='ios-menu'
                               onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
                       </HeaderButtons>),
-  headerRight:  () => (<HeaderButtons HeaderButtonComponent={HeaderTopLeftMenuIcon} >
+  headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='camera'
                               iconName='ios-camera'
                               onPress={() => console.log('Pressed HeaderTopRightNavMenuButton')} />
