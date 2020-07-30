@@ -47,6 +47,7 @@ const BottomNavigator = createBottomTabNavigator({
   Post: {
     screen: PostNavigator,
     navigationOptions: {
+      tabBarLabel: 'Все Посты',
       tabBarIcon: info => (<Ionicons  name='ios-albums'
                                       size={25}
                                       color={info.tintColor} />)
@@ -55,6 +56,7 @@ const BottomNavigator = createBottomTabNavigator({
   Booked: { 
     screen: BkmrkNavigator,
     navigationOptions: {
+      tabBarLabel: 'Избранное',
       tabBarIcon: info => (<Ionicons  name='ios-star'
                                       size={25}
                                       color={info.tintColor} />)
