@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { FlatList, View, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
-import { Post } from '../components/Post'
 import { DATA } from '../data'
+import { PostList } from '../components/PostList'
 
 export const MainScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
@@ -16,13 +16,9 @@ export const MainScreen = ({ navigation }) => {
   return (
     <View>
       <View>
-        <FlatList data={DATA}
-                  style={styles.viewFlatList}
-                  showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false}
-                  keyExtractor={post => post.id.toString()}
-                  renderItem={({ item }) => <Post post={item}
-                                                  onOpenPost={onOpenPostHandler} /> } />
+        <PostList // style
+                  dataFromParent={DATA}
+                  onOpenFromParent={onOpenPostHandler} />
         <StatusBar style="auto" />
       </View>
     </View>

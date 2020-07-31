@@ -11,38 +11,29 @@ import { PostScreen } from '../screens/PostScreen'
 import { BkmrkedScreen } from '../screens/BkmrkedScreen.js'
 import { THEME } from '../theme/theme'
 
-const PostNavigator = createStackNavigator({
-  Main: MainScreen,
-  Post: {
-    screen: PostScreen
-  }
-},{
-  initialRouteName: 'Main',
+
+const navigatorOptions = {
   defaultNavigationOptions: {
     headerStyle: {
-      // backgroundColor: THEME.NAVBAR_COLOR
       backgroundColor: Platform.OS === 'android' ? THEME.NAVBAR_COLOR : THEME.TEXT_SHINE_COLOR
     },
-    // headerTintColor: THEME.TEXT_SHINE_COLOR
     headerTintColor: Platform.OS === 'android' ? THEME.TEXT_SHINE_COLOR : THEME.NAVBAR_COLOR
   }
-})
+}
+
+const PostNavigator = createStackNavigator({
+  Main: MainScreen,
+  Post: PostScreen
+},
+  navigatorOptions
+)
 
 const BkmrkNavigator = createStackNavigator({
   Booked: BkmrkedScreen,
   Post:   PostScreen
-},{
-  // initialRouteName: 'Booked',
-  tabBarOptions: {
-    activeTintColor: '#e91e63',
-    labelStyle: {
-      fontSize: 22,
-    },
-    style: {
-      backgroundColor: 'blue',
-    },
-  }
-})
+},
+  navigatorOptions
+)
 
 const bottomTabsConfig = {
   Post: {

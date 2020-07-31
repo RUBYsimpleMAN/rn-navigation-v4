@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
-import { Post } from '../components/Post'
 import { DATA } from '../data'
+import { PostList } from '../components/PostList'
 
 export const BkmrkedScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
@@ -14,18 +14,20 @@ export const BkmrkedScreen = ({ navigation }) => {
                                   booked: post.booked })
   }
   return (
-
     <View>
       <Text style={styles.centeredSubTitle}>The Screen</Text>
       <Text style={styles.centeredTitle}>Bkmrked Screen</Text>
       <View>
-        <FlatList data={DATA.filter(post => post.booked)}
-                  style={styles.viewFlatList}
+      <PostList style={styles.viewFlatList}
+                dataFromParent={DATA.filter(post => post.booked)}
+                onOpenFromParent={onOpenPostHandler} />
+        
+        {/* <FlatList data=
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
                   keyExtractor={post => post.id.toString()}
                   renderItem={({ item }) => <Post post={item}
-                                                  onOpenPost={onOpenPostHandler} /> } />
+                                                  onOpenPost={onOpenPostHandler} /> } /> */}
         <StatusBar style="auto" />
       </View>
     </View>
