@@ -21,32 +21,25 @@ export const BkmrkedScreen = ({ navigation }) => {
       <PostList style={styles.viewFlatList}
                 dataFromParent={DATA.filter(post => post.booked)}
                 onOpenFromParent={onOpenPostHandler} />
-        
-        {/* <FlatList data=
-                  showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false}
-                  keyExtractor={post => post.id.toString()}
-                  renderItem={({ item }) => <Post post={item}
-                                                  onOpenPost={onOpenPostHandler} /> } /> */}
         <StatusBar style="auto" />
       </View>
     </View>
   );
 }
 
-BkmrkedScreen.navigationOptions = {
-  headerTitle: 'Main Screen Title',
+BkmrkedScreen.navigationOptions = ({ navigation }) => ({
+  headerTitle: 'Highlights',
   headerLeft:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='menu'
                               iconName='ios-menu'
-                              onPress={() => console.log('Pressed Header NavMenu Left Button (menu)')} />
+                              onPress={() => navigation.toggleDrawer()} />
                       </HeaderButtons>),
   headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='camera'
                               iconName='ios-camera'
-                              onPress={() => console.log('Pressed Header NavMenu Right Button (camera) ')} />
+                              onPress={() => navigation.push('Create')} />
                       </HeaderButtons>),
-}
+})
 
 const styles = StyleSheet.create({
   center: {

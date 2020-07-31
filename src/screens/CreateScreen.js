@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+
+import { NavIconTemplate } from '../components/NavIconTemplate'
 
 export const CreateScreen = ({}) => {
   return (
@@ -13,6 +16,22 @@ export const CreateScreen = ({}) => {
     </View>
   );
 }
+
+
+CreateScreen.navigationOptions = ({ navigation }) => ({
+  headerTitle: 'New Instance',
+  headerLeft:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
+                        <Item title='menu'
+                              iconName='ios-menu'
+                              onPress={() => navigation.toggleDrawer()} />
+                      </HeaderButtons>),
+  headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
+                        <Item title='camera'
+                              iconName='ios-camera'
+                              onPress={() => navigation.push('Create')} />
+                      </HeaderButtons>),
+})
+
 
 const styles = StyleSheet.create({
   center: {

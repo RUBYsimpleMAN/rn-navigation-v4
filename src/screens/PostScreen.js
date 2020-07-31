@@ -63,7 +63,7 @@ PostScreen.navigationOptions = ({ navigation }) => {
     headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                           <Item title='StarIcon'
                                 iconName={customIconName}
-                                onPress={() => console.log('Pressed Header NavMenu Right Button (star)')} />
+                                onPress={() => console.log('Pressed NavMenu Right Button (star)')} />
                         </HeaderButtons>)
   }
 }
