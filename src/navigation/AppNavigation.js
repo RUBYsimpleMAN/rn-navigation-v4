@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { Platform } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { Ionicons } from '@expo/vector-icons'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
 import { MainScreen } from '../screens/MainScreen'
 import { PostScreen } from '../screens/PostScreen'
@@ -43,7 +44,7 @@ const BkmrkNavigator = createStackNavigator({
   }
 })
 
-const BottomNavigator = createBottomTabNavigator({
+const bottomTabsConfig = {
   Post: {
     screen: PostNavigator,
     navigationOptions: {
@@ -62,7 +63,20 @@ const BottomNavigator = createBottomTabNavigator({
                                       color={info.tintColor} />)
     }
   }
-},{
+}
+
+const BottomNavigator = Platform.OS === 'android' ?
+createMaterialBottomTabNavigator(
+  bottomTabsConfig, {
+  activeTintColor: THEME.TEXT_SHINE_COLOR,
+  shifting: true,
+  barStyle: {
+    backgroundColor: THEME.NAVBAR_COLOR
+  }
+})
+:
+createBottomTabNavigator(
+  bottomTabsConfig, {
   tabBarOptions: {
     activeTintColor: THEME.NAVBAR_COLOR
   }
