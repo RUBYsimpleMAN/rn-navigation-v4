@@ -26,19 +26,19 @@ export const MainScreen = ({ navigation }) => {
 }
 
 
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Main Screen Title',
   headerLeft:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='menu'
                               iconName='ios-menu'
-                              onPress={() => console.log('Pressed Header NavMenu Left Button (menu)')} />
+                              onPress={() => navigation.toggleDrawer() } />
                       </HeaderButtons>),
   headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                         <Item title='camera'
                               iconName='ios-camera'
                               onPress={() => console.log('Pressed Header NavMenu Right Button (camera) ')} />
                       </HeaderButtons>),
-}
+})
 
 const styles = StyleSheet.create({
   center: {
