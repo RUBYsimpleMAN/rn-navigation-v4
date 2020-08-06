@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 
 import { AppNavigation } from './src/navigation/AppNavigation'
 import { bootstrap } from './src/bootstrap'
+import { postStore } from './src/redux/store/postStore'
 
 export default function App() {
   const [isAppLoad, setIsAppLoad] = useState(false)
@@ -18,11 +19,13 @@ export default function App() {
 
   // return <AppNavigation />
 
-  return( <AppNavigation>
-            <View>
-              <StatusBar style="auto" />
-            </View>
-          </AppNavigation> )
+  return( <Provider store={postStore}>
+            <AppNavigation>
+              <View>
+                <StatusBar style="auto" />
+              </View>
+            </AppNavigation> 
+          </Provider>)
 }
 
 // const styles = StyleSheet.create({

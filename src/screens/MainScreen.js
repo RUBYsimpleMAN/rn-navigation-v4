@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { View, StyleSheet } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
-import { DATA } from '../data'
 import { PostList } from '../components/PostList'
+import { loadPosts } from '../redux/actions/postActions'
 
 export const MainScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
@@ -13,11 +14,20 @@ export const MainScreen = ({ navigation }) => {
                                   date:   post.date,
                                   booked: post.booked })
   }
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadPosts())
+  }, [dispatch])
+
+  const allPostsState = useSelector(state => state.post.allPosts)
+
   return (
     <View>
       <View>
         <PostList // style
-                  dataFromParent={DATA}
+                  dataFromParent={allPostsState}
                   onOpenFromParent={onOpenPostHandler} />
         <StatusBar style="auto" />
       </View>
