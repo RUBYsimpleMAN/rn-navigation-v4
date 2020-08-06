@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Text, View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
-import { DATA } from '../data'
 import { PostList } from '../components/PostList'
 
 export const BkmrkedScreen = ({ navigation }) => {
@@ -13,13 +13,14 @@ export const BkmrkedScreen = ({ navigation }) => {
                                   date:   post.date,
                                   booked: post.booked })
   }
+  const bkmrkdPosts = useSelector(state => state.post.bkmrkdPostsState)
   return (
     <View>
       <Text style={styles.centeredSubTitle}>The Screen</Text>
       <Text style={styles.centeredTitle}>Bkmrked Screen</Text>
       <View>
       <PostList style={styles.viewFlatList}
-                dataFromParent={DATA.filter(post => post.booked)}
+                dataFromParent={bkmrkdPosts}
                 onOpenFromParent={onOpenPostHandler} />
         <StatusBar style="auto" />
       </View>

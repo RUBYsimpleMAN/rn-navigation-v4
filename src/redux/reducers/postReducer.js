@@ -2,8 +2,8 @@ import { LOAD_POSTS } from '../types/actionTypes'
 
 
 const initialState = {
-  allPosts: [],
-  bkmrkPosts: []
+  allPostsState: [],
+  bkmrkdPostsState: []
 }
 
 export const postReducer = (state = initialState, action) => {
@@ -11,8 +11,8 @@ export const postReducer = (state = initialState, action) => {
     case LOAD_POSTS:
       return{
         ...state,
-        allPosts: action.payload,
-        bkmrkPosts: action.payload.filter(post => post.booked)
+        allPostsState: action.payload,
+        bkmrkdPostsState: action.payload.filter(post => post.booked)
       }
 
     default: return state

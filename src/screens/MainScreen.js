@@ -21,7 +21,7 @@ export const MainScreen = ({ navigation }) => {
     dispatch(loadPosts())
   }, [dispatch])
 
-  const allPostsState = useSelector(state => state.post.allPosts)
+  const allPostsState = useSelector(state => state.post.allPostsState)
 
   return (
     <View>
