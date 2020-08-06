@@ -1,19 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Alert, Button, Image, ScrollView, Text, View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
-import { DATA } from '../data';
 import { THEME } from '../theme/theme';
+import { toogleBooked, rmPost } from '../redux/actions/postActions';
 
 export const PostScreen = ({ navigation }) => {
+  const dispatch = useDispatch()
   const postId = navigation.getParam('postId')
-  const postDATA = DATA.find(p => p.id === postId)
+  const postDATA = useSelector(state => state.post.allPostsState.find(p => p.id === postId))
+  const booked = useSelector(state => state.post.bkmrkdPostsState.some(post => post.id === postId))
 
-  // useEffect(() => {
-  //   navigation.setParams({ booked: postDATA.booked })
-  // }, [])
+  useEffect(() => {
+    navigation.setParams({ booked })
+  }, [booked])
+
+  const toggleHandler = useCallback(() => {
+    dispatch(toogleBooked(postId))
+  }, [dispatch, postId])
+
+  useEffect(() => {
+    navigation.setParams({ toggleHandler })
+  }, [toggleHandler])
 
   const rmPostHandler = () => {
     Alert.alert(
@@ -29,11 +40,17 @@ export const PostScreen = ({ navigation }) => {
           onPress: () => console.log("Pressed Post Alert cancel Button"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => console.log("Pressed Post Alert OK Button") }
+        { text: "OK", onPress() {
+          navigation.navigate('Main')
+          dispatch(rmPost(postId))
+        } }
       ],
       { cancelable: true }
     );
   }
+
+  if (!postDATA) return null
+
   return (
     <ScrollView>
       <View style={styles.center}>
@@ -53,6 +70,7 @@ export const PostScreen = ({ navigation }) => {
 PostScreen.navigationOptions = ({ navigation }) => {
   const postDate = navigation.getParam('date')
   const booked = navigation.getParam('booked')
+  const toggleHandler = navigation.getParam('toggleHandler')
   const customIconName = booked ? 'ios-star' : 'ios-star-outline'
   return {
     headerTitle: 'Post from ' + new Date(postDate).toLocaleDateString(),
@@ -63,7 +81,7 @@ PostScreen.navigationOptions = ({ navigation }) => {
     headerRight:  () => (<HeaderButtons HeaderButtonComponent={NavIconTemplate} >
                           <Item title='StarIcon'
                                 iconName={customIconName}
-                                onPress={() => console.log('Pressed NavMenu Right Button (star)')} />
+                                onPress={toggleHandler} />
                         </HeaderButtons>)
   }
 }
