@@ -1,4 +1,4 @@
-import { LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST } from '../types/actionTypes'
+import { CREATE_POST, LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST } from '../types/actionTypes'
 
 
 const initialState = {
@@ -8,6 +8,11 @@ const initialState = {
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_POST:
+      return{
+        ...state,
+        allPostsState: [ {...action.payload}, ...state.allPostsState],
+      }
     case LOAD_POSTS:
       return{
         ...state,
