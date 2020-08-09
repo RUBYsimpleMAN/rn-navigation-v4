@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
 import { createPost } from '../redux/actions/postActions'
+import { PhotoPicker } from '../components/PhotoPicker'
 import { THEME } from '../theme/theme'
 
 export const CreateScreen = ({ navigation }) => {
@@ -44,8 +45,10 @@ export const CreateScreen = ({ navigation }) => {
                       multiline
           />
     
-          <Image  style={styles.imgStyle}
-                  source={{ uri: imgPath }} />
+          {/* <Image  style={styles.imgStyle}
+                  source={{ uri: imgPath }} /> */}
+
+          <PhotoPicker />
     
           <StatusBar style="auto" />
           <Button title='Создать пост'
