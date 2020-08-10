@@ -1,5 +1,4 @@
 import { CREATE_POST, LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST } from '../types/actionTypes'
-import { DATA } from '../../data'
 
 
 export const createPost = post => {
@@ -13,7 +12,7 @@ export const createPost = post => {
 export const loadPosts = () => {
   return{
     type: LOAD_POSTS,
-    payload: DATA
+    payload: []
   }
 }
 

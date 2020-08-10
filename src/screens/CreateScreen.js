@@ -54,7 +54,7 @@ export const CreateScreen = ({ navigation }) => {
           <Button title='Создать пост'
                   color={THEME.ACCEPT_COLOR}
                   onPress={saveHandler}
-                  disabled={!textState || !imgRef.current} />
+                  disabled={!textState} />
           <StatusBar style="auto" />
         </View>
       </TouchableWithoutFeedback>
