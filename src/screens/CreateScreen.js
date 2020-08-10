@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Button, Image, Keyboard, ScrollView, Text, TextInput,
          TouchableWithoutFeedback, View, StyleSheet } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
@@ -11,22 +11,23 @@ import { PhotoPicker } from '../components/PhotoPicker'
 import { THEME } from '../theme/theme'
 
 export const CreateScreen = ({ navigation }) => {
-
   const dispatch = useDispatch()
-
   const [textState, setTextState] = useState('')
-
-  const imgPath = 'https://sonikdeals.com/wp-content/uploads/2019/06/self-stering-mug.jpeg'
+  const imgRef = useRef()
 
   const saveHandler = () => {
     const post = {
       date: new Date().toISOString(),
       text: textState,
-      img:  imgPath,
+      img:  imgRef.current,
       booked: false
     }
     dispatch(createPost(post))
     navigation.navigate('Main')
+  }
+
+  const photoPickHandler = uri => {
+    imgRef.current = uri
   }
 
   return (
@@ -48,12 +49,13 @@ export const CreateScreen = ({ navigation }) => {
           {/* <Image  style={styles.imgStyle}
                   source={{ uri: imgPath }} /> */}
 
-          <PhotoPicker />
+          <PhotoPicker onPickCallBACK={photoPickHandler} />
     
-          <StatusBar style="auto" />
           <Button title='Создать пост'
                   color={THEME.ACCEPT_COLOR}
-                  onPress={saveHandler} />
+                  onPress={saveHandler}
+                  disabled={!textState || !imgRef.current} />
+          <StatusBar style="auto" />
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>
