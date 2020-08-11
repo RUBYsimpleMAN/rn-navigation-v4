@@ -1,4 +1,5 @@
 import { CREATE_POST, LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST } from '../types/actionTypes'
+import { ClassDB } from '../../SQLiteDB'
 
 
 export const createPost = post => {
@@ -10,9 +11,12 @@ export const createPost = post => {
 }
 
 export const loadPosts = () => {
-  return{
-    type: LOAD_POSTS,
-    payload: []
+  return async dispatch => {
+    const postInThisFunction = await ClassDB.getPosts()
+    dispatch({
+      type: LOAD_POSTS,
+      payload: postInThisFunction
+    })
   }
 }
 
