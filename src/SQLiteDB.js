@@ -15,6 +15,18 @@ export class ClassDB {
       })
     })
   }
+  static getPosts() {
+    return new Promise((resolve, reject) => {
+      PostDB.transaction(tx => {
+        tx.executeSql(
+          'SELECT * FROM postsTable',
+          [],
+          (_, result) => resolve(result.rows._array),
+          (_, error) => reject(error)
+        )
+      })
+    })
+  }
 }
 
 
