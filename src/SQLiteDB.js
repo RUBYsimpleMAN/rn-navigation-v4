@@ -27,6 +27,18 @@ export class ClassDB {
       })
     })
   }
+  static createPost({ text, date, booked, img }) {
+    return new Promise((resolve, reject) => {
+      PostDB.transaction(tx => {
+        tx.executeSql(
+          `INSERT INTO postsTable (text, date, booked, img) VALUES (?, ?, ?, ?)`,
+          [text, date, 0, img],
+          (_, result) => resolve(result.insertId),
+          (_, error) => reject(error)
+        )
+      })
+    })
+  }
 }
 
 
