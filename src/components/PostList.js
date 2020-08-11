@@ -4,7 +4,14 @@ import { FlatList, Text, View, StyleSheet } from 'react-native';
 import { Post } from '../components/Post'
 
 
-export const PostList = ({ dataFromParent, onOpenFromParent }) => {
+export const PostList = ({ dataFromParent = [], onOpenFromParent }) => {
+  if (!dataFromParent.length) {
+    return(
+      <View style={styles.center}>
+        <Text  style={styles.centeredTitle}> ...ещё столько предстоит написать </Text>
+      </View>
+    )
+  }
   return (
     <View>
       <FlatList data={dataFromParent}
@@ -23,7 +30,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     alignItems: 'center',
     // justifyContent: 'center',
-    padding: '1%'
+    padding: '10%'
   },
   viewFlatList: {
     paddingBottom: 300,
@@ -37,17 +44,4 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-light',
     fontSize: 16,
   },
-  center: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  centeredTitle:{
-    fontFamily: 'open-sans-normal',
-    fontSize: 32,
-  },
-  centeredSubTitle:{
-    fontFamily: 'open-sans-light',
-    fontSize: 16,
-  }
 });
