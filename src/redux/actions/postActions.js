@@ -1,6 +1,6 @@
 import * as FileSystem from 'expo-file-system'
 
-import { CREATE_POST, LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST } from '../types/actionTypes'
+import { CREATE_POST, READ_POSTS, TOGGLE_BOOKED, DELETE_POST } from '../types/actionTypes'
 import { ClassDB } from '../../SQLiteDB'
 
 
@@ -32,7 +32,7 @@ export const loadPosts = () => {
   return async dispatch => {
     const postInThisFunction = await ClassDB.getPosts()
     dispatch({
-      type: LOAD_POSTS,
+      type: READ_POSTS,
       payload: postInThisFunction
     })
   }
@@ -47,7 +47,7 @@ export const toogleBooked = id => {
 
 export const rmPost = id => {
   return {
-    type: REMOVE_POST,
+    type: DELETE_POST,
     payload: id
   }
 }
