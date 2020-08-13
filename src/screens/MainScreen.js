@@ -7,6 +7,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { NavIconTemplate } from '../components/NavIconTemplate'
 import { PostList } from '../components/PostList'
 import { loadPosts } from '../redux/actions/postActions'
+import { THEME } from '../theme/theme'
 
 export const MainScreen = ({ navigation }) => {
   const onOpenPostHandler = post => {
@@ -27,7 +28,7 @@ export const MainScreen = ({ navigation }) => {
   if (loading) {
     return (
       <View style={styles.centeredLoading}>
-        <ActivityIndicator />
+        <ActivityIndicator color={THEME.USE_COLOR} />
       </View>
     )
   }
