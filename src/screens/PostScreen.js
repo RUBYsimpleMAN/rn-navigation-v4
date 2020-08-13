@@ -6,12 +6,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
 import { THEME } from '../theme/theme';
-import { toogleBooked, rmPost } from '../redux/actions/postActions';
+import { toogleBooked, deletePost } from '../redux/actions/postActions';
 
 export const PostScreen = ({ navigation }) => {
   const dispatch = useDispatch()
   const postId = navigation.getParam('postId')
-  const postDATA = useSelector(state => state.post.allPostsState.find(p => p.id === postId))
+  const post = useSelector(state => state.post.allPostsState.find(p => p.id === postId))
   const booked = useSelector(state => state.post.bkmrkdPostsState.some(post => post.id === postId))
 
   useEffect(() => {
@@ -19,8 +19,8 @@ export const PostScreen = ({ navigation }) => {
   }, [booked])
 
   const toggleHandler = useCallback(() => {
-    dispatch(toogleBooked(postId))
-  }, [dispatch, postId])
+    dispatch(toogleBooked(post))
+  }, [dispatch, post])
 
   useEffect(() => {
     navigation.setParams({ toggleHandler })
@@ -42,22 +42,22 @@ export const PostScreen = ({ navigation }) => {
         },
         { text: "OK", onPress() {
           navigation.navigate('Main')
-          dispatch(rmPost(postId))
+          dispatch(deletePost(postId))
         } }
       ],
       { cancelable: true }
     );
   }
 
-  if (!postDATA) return null
+  if (!post) return null
 
   return (
     <ScrollView>
       <View style={styles.center}>
         <Text style={styles.centeredTitle}> { postId } </Text>
         <Image  style={styles.imageStyle}
-                source={{uri: postDATA.img}} />
-        <Text style={styles.centeredSubTitle}> { postDATA.text } </Text>
+                source={{uri: post.img}} />
+        <Text style={styles.centeredSubTitle}> { post.text } </Text>
         <Button title='Удалить пост'
                 color={THEME.DANGER_COLOR}
                 onPress={rmPostHandler} />

@@ -39,6 +39,30 @@ export class ClassDB {
       })
     })
   }
+  static updatePost(post) {
+    return new Promise((resolve, reject) => {
+      PostDB.transaction(tx => {
+        tx.executeSql(
+          'UPDATE postsTable SET booked = ? WHERE id = ?',
+          [post.booked ? 0 : 1, post.id],
+          resolve,
+          (_, error) => reject(error)
+        )
+      })
+    })
+  }
+  static deletePost(id) {
+    return new Promise((resolve, reject) => {
+      PostDB.transaction(tx => {
+        tx.executeSql(
+          'DELETE FROM postsTable WHERE id = ?',
+          [id],
+          resolve,
+          (_, error) => reject(error)
+        )
+      })
+    })
+  }
 }
 
 

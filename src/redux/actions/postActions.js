@@ -38,16 +38,18 @@ export const loadPosts = () => {
   }
 }
 
-export const toogleBooked = id => {
-  return {
+export const toogleBooked = post => async dispatch => {
+  await ClassDB.updatePost(post)
+  dispatch({
     type: TOGGLE_BOOKED,
-    payload: id
-  }
+    payload: post.id
+  })
 }
 
-export const rmPost = id => {
-  return {
+export const deletePost = id => async dispatch => {
+  await ClassDB.deletePost(id)
+  dispatch({
     type: DELETE_POST,
     payload: id
-  }
+  })
 }
