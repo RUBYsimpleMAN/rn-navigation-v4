@@ -3,7 +3,8 @@ import { CREATE_POST, READ_POSTS, TOGGLE_BOOKED, DELETE_POST } from '../types/ac
 
 const initialState = {
   allPostsState: [],
-  bkmrkdPostsState: []
+  bkmrkdPostsState: [],
+  loading: true
 }
 
 export const postReducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ export const postReducer = (state = initialState, action) => {
       return{
         ...state,
         allPostsState: action.payload,
-        bkmrkdPostsState: action.payload.filter(post => post.booked)
+        bkmrkdPostsState: action.payload.filter(post => post.booked),
+        loading: false
       }
 
     case TOGGLE_BOOKED:

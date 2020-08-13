@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { View, StyleSheet } from 'react-native'
+import { ActivityIndicator, View, StyleSheet } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { NavIconTemplate } from '../components/NavIconTemplate'
@@ -22,6 +22,15 @@ export const MainScreen = ({ navigation }) => {
   }, [dispatch])
 
   const allPostsState = useSelector(state => state.post.allPostsState)
+  const loading = useSelector(state => state.post.loading)
+  
+  if (loading) {
+    return (
+      <View style={styles.centeredLoading}>
+        <ActivityIndicator />
+      </View>
+    )
+  }
 
   return (
     <View>
@@ -51,11 +60,11 @@ MainScreen.navigationOptions = ({ navigation }) => ({
 })
 
 const styles = StyleSheet.create({
-  center: {
-    // flex: 1,
+  centeredLoading: {
+    flex: 1,
     alignItems: 'center',
-    // justifyContent: 'center',
-    padding: '1%'
+    justifyContent: 'center',
+    padding: '10%'
   },
   viewFlatList: {
     paddingBottom: 300,
